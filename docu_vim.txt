@@ -1,6 +1,4 @@
-[ ] document and publish on the internet dropbox or github
 
-    [ ] web code browser https://code.woboq.org/linux/linux/  and linuxelectrons
 
     [ ] how to build cscope.file & cscope database cscope.out
         [ ] find . -name "*.c" > cscope.files; find . -name "*.h" >> cscope.files
