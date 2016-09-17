@@ -1,0 +1,50 @@
+[ ] document and publish on the internet dropbox or github
+
+    [ ] web code browser https://code.woboq.org/linux/linux/  and linuxelectrons
+
+    [ ] how to build cscope.file & cscope database cscope.out
+        [ ] find . -name "*.c" > cscope.files; find . -name "*.h" >> cscope.files
+        [ ] cscope -b -q -k
+        [ ] ctags -L cscope.files 
+        [ ] sometimes you may need to delete cscope files: cscope.*
+
+    [ ] how to install NERDTree 
+        [ ] install apt-vim: git clone https://github.com/egalpin/apt-vim.git
+        [ ] cd apt-vim; ./install.sh
+        [ ] export PATH=$PATH:/home/alex/.vimpkg/bin
+        [ ] ./apt-vim install -y https://github.com/scrooloose/nerdtree.git
+
+    [ ] how to install taglist (TlistOpen)
+        [ ] go to http://www.vim.org/scripts/script.php?script_id=273 and download taglist_*.zip package
+        [ ] unzip taglist_*.zip package and and copy doc and plugin dirs to ~/.vim
+
+    [ ] how to install cctree
+        [ ] download it from http://www.vim.org/scripts/script.php?script_id=2368
+        [ ] mv cctree.vim ~/.vim/plugin/
+        [ ] download the documentation from http://sites.google.com/site/vimcctree/cctree.txt
+        [ ] Load database:
+            > cscope -b -i cscope.files
+             [Tip: add -c option to build uncompressed databases for faster load speeds]
+            Load database~
+            	:CCTreeLoadDB
+            FASTER DATABASE LOADING
+                Save native Xref Db~
+                        :CCTreeSaveXRefDb  cctree.out
+                Load native XRef Db~
+                        :CCTreeLoadXRefDb  cctree.out
+        [ ] Exploring source-code~
+            Get reverse call tree for symbol  <C-\><
+            	:CCTreeTraceReverse <symbolname>     
+            Get forward call tree for symbol  <C-\>>
+            	:CCTreeTraceForward <symbolname>
+            Increase depth of tree and update <C-\>=
+            	:CCTreeRecurseDepthPlus     
+            Decrease depth of tree and update <C-\>-
+            	:CCTreeRecurseDepthMinus    
+
+
+[ ] to do
+    [ ] versioning control with git: git init; git add ...
+    [ ] use http://www.tldp.org/LDP/lkmpg/2.6/lkmpg.pdf
+    [ ] read a paragraph every day from LKD and LDD
+    [ ] debugging kernel with gdb and serial port
