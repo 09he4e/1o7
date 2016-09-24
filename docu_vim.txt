@@ -16,3 +16,28 @@
         [ ] go to http://www.vim.org/scripts/script.php?script_id=273 and download taglist_*.zip package
         [ ] unzip taglist_*.zip package and and copy doc and plugin dirs to ~/.vim
 
+
+    [ ] how to install cctree
+        [ ] download it from http://www.vim.org/scripts/script.php?script_id=2368
+        [ ] mv cctree.vim ~/.vim/plugin/
+        [ ] download the documentation from http://sites.google.com/site/vimcctree/cctree.txt
+        [ ] Load database:
+            > cscope -b -i cscope.files
+             [Tip: add -c option to build uncompressed databases for faster load speeds]
+            Load database~
+            	:CCTreeLoadDB
+            FASTER DATABASE LOADING
+                Save native Xref Db~
+                        :CCTreeSaveXRefDb  cctree.out
+                Load native XRef Db~
+                        :CCTreeLoadXRefDb  cctree.out
+        [ ] Exploring source-code~
+            Get reverse call tree for symbol  <C-\><
+            	:CCTreeTraceReverse <symbolname>     
+            Get forward call tree for symbol  <C-\>>
+            	:CCTreeTraceForward <symbolname>
+            Increase depth of tree and update <C-\>=
+            	:CCTreeRecurseDepthPlus     
+            Decrease depth of tree and update <C-\>-
+            	:CCTreeRecurseDepthMinus    
+
