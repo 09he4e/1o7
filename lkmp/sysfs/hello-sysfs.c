@@ -45,11 +45,11 @@ static int __init mymodule_init (void)
     printk(KERN_INFO "mymodule: initialised\n");
 
     mymodule =
-        kobject_create_and_add("mymodule", kernel_kobj);
+        kobject_create_and_add("mymodule", kernel_kobj); /* lex: create the kernel object */
     if (!mymodule)
         return -ENOMEM;
 
-    error = sysfs_create_file(mymodule, &myvariable_attribute.attr);
+    error = sysfs_create_file(mymodule, &myvariable_attribute.attr); /* lex: create sysfs file */
     if (error) {
         printk(KERN_INFO "failed to create the myvariable file " \
                "in /sys/kernel/mymodule\n");
