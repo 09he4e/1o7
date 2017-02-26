@@ -1,0 +1,1 @@
+by calling ./ioctl userspace program the userspace application can read and write messages to char_dev device file. This a way to establish communication between userspace and kernelspace using ioctl 
