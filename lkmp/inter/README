@@ -1,0 +1,8 @@
+Unfortunatelly this code fails due to compilation errors. Therefore needs to be reworked
+
+make -C /lib/modules/4.0.4/build M=/root/kuspace/1o7/lkmp/inter modules
+make[1]: Entering directory '/home/alex/Downloads/linux-4.0.4'
+  CC [M]  /root/kuspace/1o7/lkmp/inter/inter.o
+/root/kuspace/1o7/lkmp/inter/inter.c: In function ‘irq_handler’:
+/root/kuspace/1o7/lkmp/inter/inter.c:58:37: error: macro "INIT_WORK" passed 3 arguments, but takes just 2
+ INIT_WORK(&task, got_char, &scancode);
