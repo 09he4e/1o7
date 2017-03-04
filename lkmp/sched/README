@@ -1,0 +1,13 @@
+unfortunatally the module cannot be insterted due to
+
+[28678.670639] ------------[ cut here ]------------
+[28678.670704] kernel BUG at fs/proc/generic.c:495!
+[28678.670756] invalid opcode: 0000 [#1] SMP 
+
+Scheduling Tasks
+
+Very often, we have "housekeeping" tasks which have to be done at a certain time, or every so often. If the task is to be done by a process, we do it by putting it in the crontab file. If the task is to be done by a kernel module, we have two possibilities. The first is to put a process in the crontab file which will wake up the module by a system call when necessary, for example by opening a file. This is terribly inefficient, however – we run a new process off of crontab, read a new executable to memory, and all this just to wake up a kernel module which is in memory anyway.
+
+Instead of doing that, we can create a function that will be called once for every timer interrupt. The way we do this is we create a task, held in a workqueue_struct structure, which will hold a pointer to the function. Then, we use queue_delayed_work to put that task on a task list called my_workqueue , which is the list of tasks to be executed on the next timer interrupt. Because we want the function to keep on being executed, we need to put it back on my_workqueue whenever it is called, for the next timer interrupt.
+
+There's one more point we need to remember here. When a module is removed by rmmod, first its reference count is checked. If it is zero, module_cleanup is called. Then, the module is removed from memory with all its functions. Things need to be shut down properly, or bad things will happen. See the code below how this can be done in a safe way.
