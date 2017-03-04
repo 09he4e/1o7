@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>index.html</title>
+    <style>
+            div {
+                background-color: lightgrey;
+
+            }
+            div2 {
+                background-color: yellow;
+
+            }
+        </style>
+  </head>
+  <body>
+    <big><big><b><br>
+          hello−1.c<br>
+          <br>
+        </b></big></big> <small> </small><br>
+    <img src="hello-1.png" alt="" height="302" width="666"><br>
+    <br>
+    Kernel modules must have at least two functions a initialization
+    function called <b>init_module </b>which is called when the module<br>
+    is insmoded into the kernel, and a cleanup function called <b>cleanup_module</b>
+    which is called just before the module is rmmoded.<br>
+    <big><big><b><img alt="" src="image2.png" height="175" width="743">
+          <br>
+        </b></big></big><big><big><b><br>
+          <br>
+          hello−2.c<br>
+          <br>
+        </b></big></big> <img src="image3.png" alt="" height="332"
+      width="697"> <br>
+    As of Linux 2.4, <b>you can rename the init and cleanup functions
+      of your modules; they no longer have to be</b><b>called
+      init_module() and cleanup_module() respectively</b>. This is done
+    with the <b>module_init()</b>and <b>module_exit() macros</b>.
+    These macros are defined in linux/init.h. The only caveat is that
+    yourinit and cleanup functions must be defined before calling the
+    macros, otherwise you'll get compilation errors. <br>
+    <img src="image4.png" alt="" height="130" width="675"> <div2><br>
+      Need to clarify this later: <br>
+      Now have a look at linux/drivers/char/Makefile for a real world
+      example. As you can see, some<br>
+      things get hardwired into the kernel (obj−y) but where are all
+      those obj−m gone? Those familiar with shell<br>
+      scripts will easily be able to spot them. For those not, the
+      obj−$(CONFIG_FOO) </div2> entries you see everywhere<br>
+    expand into obj−y or obj−m, depending on whether the CONFIG_FOO
+    variable has been set to y or m. While<br>
+    we are at it, those were exactly the kind of variables that you have
+    set in the linux/.config file, the last<br>
+    time when you said make menuconfig or something like that.<br>
+    <br>
+    <br>
+    <big><big><b>hello−3.c<br>
+        </b></big></big><br>
+    <br>
+    There is also an <b>__initdata</b> which works similarly to __init
+    but for<b> init variables</b> rather than functions. <br>
+    <img alt="" src="image6.png" height="367" width="660"><br>
+    <br>
+    <br>
+    <big><big><b>hello−4.c</b></big></big><b><big><big>&nbsp;&nbsp;&nbsp;
+
+
+
+
+
+          &nbsp;&nbsp;&nbsp; Licensing and Module Documentation</big></big></b><br>
+    <br>
+    <img alt="" src="image5.png" height="137" width="691"><br>
+    <br>
+    By setting the license to GPL, you can keep the<br>
+    warning from being printed.<br>
+    <img alt="" src="image7.png" height="173" width="666"><br>
+    <img alt="" src="image8.png" height="481" width="651"><br>
+    <big><big><big><b><br>
+          </b><b> </b><b><br>
+          </b><b> </b><small><b>2.6. Passing Command Line Arguments to
+              a Module</b></small></big></big></big><br>
+    <br>
+    <big><big><b>hello−5.c&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; </b></big></big><br>
+    <br>
+    At runtime, insmod will fill the variables with any<br>
+    command line arguments that are given, like ./insmod mymodule.ko
+    myvariable=5.<br>
+    <br>
+    <img alt="" src="image9.png" height="132" width="730"><br>
+    <br>
+    Lastly, there's a macro function, MODULE_PARM_DESC(), that is used
+    to document arguments that the<br>
+    module can take. It takes two parameters: a variable name and a free
+    form string describing that variable.<br>
+    <br>
+    <img alt="" src="image10.png" height="662" width="696"><br>
+    <img alt="" src="image11.png" height="423" width="697"><br>
+    <br>
+    <img alt="" src="image12.png" height="431" width="727"><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <big><big><b>2.7. Modules Spanning Multiple Files</b></big></big><br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <big><big><b>2.8. Building modules for a precompiled kernel</b></big></big><br>
+    <br>
+    <br>
+    Obviously, we strongly suggest you to recompile your kernel, so that
+    you can enable a number of useful<br>
+    debugging features, <div2> such as forced module unloading
+      (MODULE_FORCE_UNLOAD): when this option is<br>
+      enabled, you can force the kernel to unload a module even when it
+      believes it is unsafe, via a rmmod −f<br>
+      module command</div2> . This option can save you a lot of time and
+    a number of reboots during the development of<br>
+    a module.<br>
+    <br>
+    Now, if you just install a kernel source tree, use it to compile
+    your kernel module and you try to insert your<br>
+    module into the kernel, in most cases you would obtain an error as
+    follows:<br>
+    insmod: error inserting 'poet_atkm.ko': −1 Invalid module format<br>
+    Less cryptical information are logged to /var/log/messages:<br>
+    <br>
+    To overcome this problem we could resort to the −−force−vermagic
+    option, but this solution is potentially<br>
+    unsafe, and unquestionably inacceptable in production modules.
+    Consequently, we want to compile our<br>
+    module in an environment which was identical to the one in which our
+    precompiled kernel was built. How to<br>
+    do this, is the subject of the remainder of this chapter.<br>
+    <br>
+    <br>
+  </body>
+</html>
