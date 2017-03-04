@@ -1,0 +1,3 @@
+Hello and Goodbye
+
+In early kernel versions you had to use the init_module and cleanup_module functions, as in the first hello world example, but these days you can name those anything you want by using the module_init and module_exit macros. These macros are defined in linux/init.h. The only requirement is that your init and cleanup functions must be defined before calling the those macros, otherwise you'll get compilation errors.
