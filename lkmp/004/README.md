@@ -1,6 +1,6 @@
 Honestly, who loads or even cares about proprietary modules? If you do then you might have seen something like this:
 
-# insmod xxxxxx.o
+insmod xxxxxx.o
 Warning: loading xxxxxx.ko will taint the kernel: no license
   See http://www.tux.org/lkml/#export-tainted for information about tainted modules
 Module xxxxxx loaded, with warnings
