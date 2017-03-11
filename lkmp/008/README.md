@@ -13,6 +13,7 @@ Here a simple example showing how to use a /proc file. This is the HelloWorld fo
 The /proc/helloworld is created when the module is loaded with the function proc_create. The return value is a struct proc_dir_entry , and it will be used to configure the file /proc/helloworld (for example, the owner of this file). A null return value means that the creation has failed.
 
 Each time, everytime the file /proc/helloworld is read, the function procfs_read is called. Two parameters of this function are very important: the buffer (the first parameter) and the offset (the third one). The content of the buffer will be returned to the application which read it (for example the cat command). The offset is the current position in the file. If the return value of the function isn't null, then this function is called again. So be careful with this function, if it never returns zero, the read function is called endlessly.
-
+```
 # cat /proc/helloworld
 HelloWorld!
+```
