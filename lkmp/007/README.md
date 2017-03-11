@@ -1,5 +1,3 @@
-chardev.c
-
 ### The next code sample creates a char driver named chardev. You can cat its device file.
 
 cat /proc/devices
