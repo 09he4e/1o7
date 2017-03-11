@@ -3,11 +3,11 @@ Modules Spanning Multiple Files
 Sometimes it makes sense to divide a kernel module between several source files.
 
 Here's an example of such a kernel module.
-
+```
 /*
  *  start.c - Illustration of multi filed modules
  */
-
+```
 #include <linux/kernel.h>       /* We're doing kernel work */
 #include <linux/module.h>       /* Specifically, a module */
 
