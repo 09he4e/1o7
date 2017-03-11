@@ -1,4 +1,4 @@
-Modules Spanning Multiple Files
+###Modules Spanning Multiple Files
 
 Sometimes it makes sense to divide a kernel module between several source files.
 
