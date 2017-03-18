@@ -24,8 +24,7 @@ scullsingle scullpriv sculluid scullwuid
 ./scull/access.c:334:	{ "scullwuid", &scull_w_device, &scull_wusr_fops },
 ```
 
-**``` Chapter 3 only covers the internals of scull0 to scull3; ``` **
-the more advanced devices are covered in Chapter 6. scullpipe is described in the section “A Blocking I/O Example,” and the others are described in “Access Control on a Device File.”
+**``` Chapter 3 only covers the internals of scull0 to scull3; ```** the more advanced devices are covered in Chapter 6. scullpipe is described in the section “A Blocking I/O Example,” and the others are described in “Access Control on a Device File.”
 
 ### Major and Minor Numbers 
 
