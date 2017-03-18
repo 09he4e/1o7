@@ -175,7 +175,7 @@ static void scull_setup_cdev(struct scull_dev *dev, int index)
          dev->cdev.ops = &scull_fops;
          err = cdev_add (&dev->cdev, devno, 1);
          /* Fail gracefully if need be */
-if (err) 
+         if (err) 
          printk(KERN_NOTICE "Error %d adding scull%d", err, index);
 }
 ```
