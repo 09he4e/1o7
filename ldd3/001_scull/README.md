@@ -8,6 +8,7 @@ Throughout the chapter, we present code fragments extracted from a real device d
 
 To make scull useful as a template for writing real drivers for real devices, we’ll show you how to implement several device abstractions on top of the computer memory, each with a different personality. 
 
+```
 scull0 to scull3 
 Four devices, each consisting of a memory area that is both global and persistent. 
 ./scull/scull.h:48:#define SCULL_NR_DEVS 4    /* scull0 through scull3 */
@@ -21,6 +22,7 @@ scullsingle scullpriv sculluid scullwuid
 ./scull/access.c:333:	{ "sculluid", &scull_u_device, &scull_user_fops },
 ./scull/scull.h:92:	unsigned int access_key;  /* used by sculluid and scullpriv */
 ./scull/access.c:334:	{ "scullwuid", &scull_w_device, &scull_wusr_fops },
+```
 
 This chapter covers the internals of scull0 to scull3; 
 the more advanced devices are covered in Chapter 6. scullpipe is described in the section “A Blocking I/O Example,” and the others are described in “Access Control on a Device File.”
@@ -69,6 +71,7 @@ once the number has been assigned, you can read it from /proc/devices.*
 To load a driver using a dynamic major number, therefore, the invocation of insmod can be replaced by a simple script that, after calling insmod, reads /proc/devices in order to create the special file(s). 
 A typical /proc/devices file looks like the following: 
 
+```
 Character devices:
       1 mem
       2 pty
@@ -85,11 +88,13 @@ Block devices:
       11 sr
       65 sd
       66 sd
+```
 
 Even better device information can usually be obtained from sysfs, generally mounted on /sys on 2.6-based systems. Getting scull to export information via sysfs is beyond the scope of this chapter, however; we’ll return to this topic in Chapter 14. 
 
 The following script, scull_load, is part of the scull distribution:
 
+```
 #!/bin/sh
      module="scull"
      device="scull"
@@ -110,6 +115,7 @@ major=$(awk "\\$2==\"$module\" {print \\$1}" /proc/devices)
      grep -q '^staff:' /etc/group || group="wheel"
      chgrp $group /dev/${device}[0-3]
      chmod $mode  /dev/${device}[0-3]
+```
 
 As an alternative to using a pair of scripts for loading and unloading, you could write an init script, ready to be placed in the directory your distribution uses for these scripts.* As part of the scull source, we offer a fairly complete and configurable exam- ple of an init script, called scull.init; it accepts the conventional arguments—start, stop, and restart—and performs the role of both scull_load and scull_unload. 
 
@@ -120,6 +126,8 @@ Most of the fundamental driver opera- tions involve three important kernel data 
 File Operations 
 
 The scull device driver implements only the most important device methods. Its file_operations structure is initialized as follows: 
+
+```
 struct file_operations scull_fops = {
 .owner =
 .llseek =
@@ -135,6 +143,7 @@ scull_write,
 scull_ioctl,
 scull_open,
 }; 
+```
 
 The file Structure 
 
@@ -149,7 +158,8 @@ As we mentioned, the kernel uses structures of type struct cdev to represent cha
 Device Registration in scull 
 Internally, scull represents each device with a structure of type struct scull_dev. This structure is defined as: 
 
-     struct scull_dev {
+```
+struct scull_dev {
         struct scull_qset *data;  /* Pointer to first quantum set */
         int quantum;
         int qset;
@@ -158,12 +168,14 @@ Internally, scull represents each device with a structure of type struct scull_d
         struct semaphore sem;     /* mutual exclusion semaphore     */
         struct cdev cdev;     /* Char device structure      */
 }; 
+```
 
 We discuss the various fields in this structure as we come to them, but for now, we call attention to cdev, the struct cdev that interfaces our device to the kernel. This 
 structure must be initialized and added to the system as described above; the scull code that handles this task is: 
 
-     static void scull_setup_cdev(struct scull_dev *dev, int index)
-     {
+```
+static void scull_setup_cdev(struct scull_dev *dev, int index)
+{
          int err, devno = MKDEV(scull_major, scull_minor + index);
          cdev_init(&dev->cdev, &scull_fops);
          dev->cdev.owner = THIS_MODULE;
@@ -172,6 +184,6 @@ structure must be initialized and added to the system as described above; the sc
          /* Fail gracefully if need be */
 if (err) 
          printk(KERN_NOTICE "Error %d adding scull%d", err, index);
-     }
-
+}
+```
 
