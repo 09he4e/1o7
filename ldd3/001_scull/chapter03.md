@@ -128,20 +128,14 @@ The scull device driver implements only the most important device methods. Its f
 
 ```
 struct file_operations scull_fops = {
-.owner =
-.llseek =
-.read =
-.write =
-.ioctl =
-.open =
-.release =  scull_release,
-THIS_MODULE,
-scull_llseek,
-scull_read,
-scull_write,
-scull_ioctl,
-scull_open,
-}; 
+        .owner =    THIS_MODULE,
+        .llseek =   scull_llseek,
+        .read =     scull_read,
+        .write =    scull_write,
+        .ioctl =    scull_ioctl,
+        .open =     scull_open,
+        .release =  scull_release,
+};
 ```
 
 ### The file Structure 
