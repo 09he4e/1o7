@@ -1,6 +1,6 @@
-LDD3 CHAPTER 3 
+### LDD3 CHAPTER 3 
 
-Char Drivers 
+### Char Drivers 
 
 Throughout the chapter, we present code fragments extracted from a real device driver: scull (Simple Character Utility for Loading Localities). scull is a char driver that acts on a memory area as though it were a device. In this chapter, because of that peculiarity of scull, we use the word device interchangeably with “the memory area used by scull. 
 
@@ -27,7 +27,7 @@ scullsingle scullpriv sculluid scullwuid
 This chapter covers the internals of scull0 to scull3; 
 the more advanced devices are covered in Chapter 6. scullpipe is described in the section “A Blocking I/O Example,” and the others are described in “Access Control on a Device File.”
 
-Major and Minor Numbers 
+### Major and Minor Numbers 
 
 Special files for char drivers are identified by a “c” in the first column of the output of ls –l. Block devices appear in /dev as well, but they are identified by a “b.” 
 
@@ -38,7 +38,7 @@ Modern Linux kernels allow multiple drivers to share major numbers, but most dev
 The minor number is used by the kernel to determine exactly which device is being referred to. 
 
 
-The Internal Representation of Device Numbers 
+### The Internal Representation of Device Numbers 
 
 Within the kernel, the dev_t type (defined in <linux/types.h>) is used to hold device numbers—both the major and minor parts. 
 
@@ -51,7 +51,7 @@ If, instead, you have the major and minor numbers and need to turn them into a d
 2.6 kernel can accommodate a vast number of devices, while previous kernel versions were limited to 255 major and 255 minor numbers. 
 So you should expect that the format of dev_t could change again in the future; if you write your drivers carefully, however, these changes will not be a problem. 
 
-Allocating and Freeing Device Numbers 
+### Allocating and Freeing Device Numbers 
 
 to obtain one or more device numbers to work with, use register_chrdev_region, which is declared in <linux/fs.h>: 
 
@@ -62,7 +62,7 @@ The kernel will happily allocate a major number for you on the fly, but you must
 Device numbers are freed with: 
      void unregister_chrdev_region(dev_t first, unsigned int count);
 
-Dynamic Allocation of Major Numbers 
+### Dynamic Allocation of Major Numbers 
 
 Thus, for new drivers, we strongly suggest that you use dynamic allocation to obtain your major device number, rather than choosing a number randomly from the ones that are currently free. 
 
@@ -119,11 +119,11 @@ major=$(awk "\\$2==\"$module\" {print \\$1}" /proc/devices)
 
 As an alternative to using a pair of scripts for loading and unloading, you could write an init script, ready to be placed in the directory your distribution uses for these scripts.* As part of the scull source, we offer a fairly complete and configurable exam- ple of an init script, called scull.init; it accepts the conventional arguments—start, stop, and restart—and performs the role of both scull_load and scull_unload. 
 
-Some Important Data Structures 
+### Some Important Data Structures 
 
 Most of the fundamental driver opera- tions involve three important kernel data structures, called file_operations, file, and inode. 
 
-File Operations 
+### File Operations 
 
 The scull device driver implements only the most important device methods. Its file_operations structure is initialized as follows: 
 
