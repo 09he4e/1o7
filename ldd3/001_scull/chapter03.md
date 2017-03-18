@@ -30,6 +30,7 @@ scullsingle scullpriv sculluid scullwuid
 
 Special files for char drivers are identified by a “c” in the first column of the output of ls –l. Block devices appear in /dev as well, but they are identified by a “b.” 
 
+![Screenshot](major_and_minor.png)
 
 ￼
 Modern Linux kernels allow multiple drivers to share major numbers, but most devices that you will see are still organized on the one-major-one-driver principle. 
