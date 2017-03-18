@@ -4,3 +4,7 @@ and
 https://github.com/bashrc/LKMPG
 with the intend of exercising and understading the lkmpg code
 tested and compiled with Fedora with kernel 4.4.14-200.fc22.x86_64
+
+- [x] Finish my changes
+- [ ] Push my commits to GitHub
+- [ ] Open a pull request
