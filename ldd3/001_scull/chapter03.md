@@ -1,4 +1,5 @@
 ### LDD3 CHAPTER 3 
+     This is only a summary of LDD3 Chapter3 and it only contains fragments from the book.
 
 ### Char Drivers 
 
