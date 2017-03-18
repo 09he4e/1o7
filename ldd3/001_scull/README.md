@@ -145,17 +145,17 @@ scull_open,
 }; 
 ```
 
-The file Structure 
+### The file Structure 
 
 The file structure represents an open file. (It is not specific to device drivers; every open file in the system has an associated struct file in kernel space.) It is created by the kernel on open and is passed to any function that operates on the file, until the last close. After all instances of the file are closed, the kernel releases the data structure. 
 
-The inode Structure 
+### The inode Structure 
 The inode structure is used by the kernel internally to represent files. Therefore, it is different from the file structure that represents an open file descriptor. There can be numerous file structures representing multiple open descriptors on a single file, but they all point to a single inode structure. 
 
-Char Device Registration 
+### Char Device Registration 
 As we mentioned, the kernel uses structures of type struct cdev to represent char devices internally. Before the kernel invokes your device’s operations, you must allo- cate and register one or more of these structures.* 
 
-Device Registration in scull 
+### Device Registration in scull 
 Internally, scull represents each device with a structure of type struct scull_dev. This structure is defined as: 
 
 ```
