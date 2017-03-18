@@ -22,9 +22,11 @@ scullsingle scullpriv sculluid scullwuid
 ./scull/access.c:333:	{ "sculluid", &scull_u_device, &scull_user_fops },
 ./scull/scull.h:92:	unsigned int access_key;  /* used by sculluid and scullpriv */
 ./scull/access.c:334:	{ "scullwuid", &scull_w_device, &scull_wusr_fops },
-```
+
 
 **_Chapter 3 only covers the internals of scull0 to scull3;_**
+
+```
 
 the more advanced devices are covered in Chapter 6. scullpipe is described in the section “A Blocking I/O Example,” and the others are described in “Access Control on a Device File.”
 
