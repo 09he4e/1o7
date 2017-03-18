@@ -1,5 +1,6 @@
 This is just a mix between
-\http://www.tldp.org/LDP/lkmpg/2.6/html/lkmpg.html 
+
+http://www.tldp.org/LDP/lkmpg/2.6/html/lkmpg.html 
 
 and 
 
