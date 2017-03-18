@@ -1,4 +1,4 @@
-* This is just a mix between *
+*This is just a mix between*
 ## http://www.tldp.org/LDP/lkmpg/2.6/html/lkmpg.html 
 ### and 
 ### https://github.com/bashrc/LKMPG
