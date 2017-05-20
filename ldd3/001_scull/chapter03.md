@@ -196,4 +196,4 @@ The open method is provided for a driver to do any initialization in preparation
 * Update the f_op pointer, if necessary
 * Allocate and fill any data structure to be put in filp->private_data
 
-...
+ . . . 
