@@ -182,3 +182,10 @@ static void scull_setup_cdev(struct scull_dev *dev, int index)
 }
 ```
 
+### The older way
+
+The classic way to register a char device driver is with:
+```
+     int register_chrdev(unsigned int major, const char *name,
+                         struct file_operations *fops);
+```
