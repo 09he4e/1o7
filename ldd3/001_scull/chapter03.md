@@ -195,3 +195,5 @@ The open method is provided for a driver to do any initialization in preparation
 * Initialize the device if it is being opened for the first time
 * Update the f_op pointer, if necessary
 * Allocate and fill any data structure to be put in filp->private_data
+
+...
