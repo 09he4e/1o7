@@ -189,3 +189,9 @@ The classic way to register a char device driver is with:
      int register_chrdev(unsigned int major, const char *name,
                          struct file_operations *fops);
 ```
+### The open Method
+The open method is provided for a driver to do any initialization in preparation for later operations. In most drivers, open should perform the following tasks:
+• Check for device-specific errors (such as device-not-ready or similar hardware problems)
+• Initialize the device if it is being opened for the first time
+• Update the f_op pointer, if necessary
+• Allocate and fill any data structure to be put in filp->private_data
